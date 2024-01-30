@@ -77,7 +77,6 @@ function getDinosaurDescription(dinosaurs, id) {
   // filter is returning an array.
   // brackets zero [0] says to return the only element in the array
   let dinosaur = dinosaurs.filter(dino => dino.dinosaurId === id) [0]
-  console.log(dinosaur)
   
   if(dinosaur == undefined){ 
     return `A dinosaur with an ID of '${id}' cannot be found.`
@@ -111,26 +110,29 @@ console.log(getDinosaurDescription(exampleDinosaurData, "GKl035EYKN"))
  *  getDinosaursAliveMya(dinosaurs, 65, "unknown-key");
  *  //> ["WHQcpcOj0G"]
  */
-//helper function
-// function checkKey(key,obj){
-//   if(key == 'name'){
-//     return obj.name
-//   }else{
-//     return obj.dinosaurId
-//   }
-// }
+
 
 
 function getDinosaursAliveMya(dinosaurs, mya, key) {
-//   let arrOfIds=[];
-//   dinosaurs.forEach(dino=>{
-//     if (dino.mya.length == 1 && (dino.mya == mya || dino.mya-1 == mya)) return dino.dinosaurId
-//     else if()
-//   })
-//   let filtDino = dinosaurs.filter(dino=>{
-   
-//   })
+const filteredDinosaurs = dinosaurs.filter(dino => {
+  if(dino.mya.length === 1){
+    return dino.mya[0] === mya || dino.mya[0] - 1 === mya;
+  }
+  return false;
+});
+
+return filteredDinosaurs.map(dino => {
+  if (key === 'name') {
+    return dino.name;
+  } else {
+    return dino.dinosaurId;
+  }
+});
+
+
 }
+console.log(getDinosaursAliveMya(exampleDinosaurData, 140, 'name'))
+
 
 module.exports = {
   getLongestDinosaur,
