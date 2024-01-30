@@ -22,7 +22,35 @@ const exampleDinosaurData = require("../data/dinosaurs");
  *  getLongestDinosaur(dinosaurs);
  *  //> { Brachiosaurus: 98.43 }
  */
-function getLongestDinosaur(dinosaurs) {}
+
+
+  function getLongestDinosaur(dinosaurs) {
+    let result = {};
+    if(dinosaurs.length === 0){
+     return result
+    }
+
+    let lengthOfDino = 0;
+    let dinoName = '';
+    dinosaurs.forEach(dino=>{
+      if(dino.lengthInMeters > lengthOfDino){
+        lengthOfDino = dino.lengthInMeters
+        dinoName = dino.name
+      }
+    })
+
+    lengthOfDino = lengthOfDino*3.281
+
+    result [dinoName]=lengthOfDino
+
+     
+    return result;
+  
+  }
+
+console.log(getLongestDinosaur (exampleDinosaurData))
+
+
 
 /**
  * getDinosaurDescription()
@@ -44,8 +72,20 @@ function getLongestDinosaur(dinosaurs) {}
  *  getDinosaurDescription(dinosaurs, "incorrect-id");
  *  //> "A dinosaur with an ID of 'incorrect-id' cannot be found."
  */
-function getDinosaurDescription(dinosaurs, id) {}
-
+function getDinosaurDescription(dinosaurs, id) {
+  //init variable to loop through the dinosaur array(filter method)=>create a new arrayif the id param matches dinosaur key.
+  // filter is returning an array.
+  // brackets zero [0] says to return the only element in the array
+  let dinosaur = dinosaurs.filter(dino => dino.dinosaurId === id) [0]
+  console.log(dinosaur)
+  
+  if(dinosaur == undefined){ 
+    return `A dinosaur with an ID of '${id}' cannot be found.`
+}
+  return `${dinosaur.name} (${dinosaur.pronunciation})\n${dinosaur.info} It lived in the ${dinosaur.period} period, over ${Math.min(dinosaur.mya[dinosaur.mya.length-1])} million years ago.`
+  
+}
+console.log(getDinosaurDescription(exampleDinosaurData, "GKl035EYKN"))
 /**
  * getDinosaursAliveMya()
  * ---------------------
@@ -71,7 +111,26 @@ function getDinosaurDescription(dinosaurs, id) {}
  *  getDinosaursAliveMya(dinosaurs, 65, "unknown-key");
  *  //> ["WHQcpcOj0G"]
  */
-function getDinosaursAliveMya(dinosaurs, mya, key) {}
+//helper function
+// function checkKey(key,obj){
+//   if(key == 'name'){
+//     return obj.name
+//   }else{
+//     return obj.dinosaurId
+//   }
+// }
+
+
+function getDinosaursAliveMya(dinosaurs, mya, key) {
+//   let arrOfIds=[];
+//   dinosaurs.forEach(dino=>{
+//     if (dino.mya.length == 1 && (dino.mya == mya || dino.mya-1 == mya)) return dino.dinosaurId
+//     else if()
+//   })
+//   let filtDino = dinosaurs.filter(dino=>{
+   
+//   })
+}
 
 module.exports = {
   getLongestDinosaur,
