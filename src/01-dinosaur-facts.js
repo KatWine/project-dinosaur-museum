@@ -114,25 +114,19 @@ console.log(getDinosaurDescription(exampleDinosaurData, "GKl035EYKN"))
 
 
 function getDinosaursAliveMya(dinosaurs, mya, key) {
-const filteredDinosaurs = dinosaurs.filter(dino => {
-  if(dino.mya.length === 1){
-    return dino.mya[0] === mya || dino.mya[0] - 1 === mya;
+let result = [];
+  
+dinosaurs.forEach((dino)=>{
+  if(
+    (dino.mya.length === 1 && (dino.mya[0]=== mya || dino.mya[0] - 1 === mya )) || 
+    (dino.mya.length === 2 && mya <= dino.mya[0] && mya>=dino.mya[1])
+    ){
+      result.push(key in dino ? dino[key] : dino.dinosaurId) 
   }
-  return false;
-});
-
-return filteredDinosaurs.map(dino => {
-  if (key === 'name') {
-    return dino.name;
-  } else {
-    return dino.dinosaurId;
-  }
-});
-
-
+ 
+})
+return result;
 }
-console.log(getDinosaursAliveMya(exampleDinosaurData, 140, 'name'))
-
 
 module.exports = {
   getLongestDinosaur,
