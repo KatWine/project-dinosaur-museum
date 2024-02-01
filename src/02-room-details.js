@@ -3,6 +3,7 @@
 
   You may use this data to test your functions. You may assume the shape of the data remains the same but that the values may change.
 */
+const dinosaurs = require("../data/dinosaurs");
 const exampleDinosaurData = require("../data/dinosaurs");
 const exampleRoomData = require("../data/rooms");
 // Do not change the lines above.
@@ -10,7 +11,8 @@ const exampleRoomData = require("../data/rooms");
 /**
  * getRoomByDinosaurName()
  * ---------------------
- * Return the name of the room where the given dinosaur can be found. If the dinosaur does not exist in the `dinosaurs` list or cannot be found in any room, return an error message that says so.
+ * Return the name of the room where the given dinosaur can be found. If the dinosaur does not exist in the 
+ * `dinosaurs` list or cannot be found in any room, return an error message that says so.
  *
  * @param {Object[]} dinosaurs - An array of dinosaur objects. See the `data/dinosaurs.js` file for an example of the input.
  * @param {Object[]} rooms - An array of room objects. See the `data/rooms.js` file for an example of the input.
@@ -25,7 +27,21 @@ const exampleRoomData = require("../data/rooms");
  *  getRoomByDinosaurName(dinosaurs, rooms, "Pterodactyl");
  *  //> "Dinosaur with name 'Pterodactyl' cannot be found."
  */
-function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {}
+
+
+
+function getRoomByDinosaurName(dinosaurs, rooms, dinosaurName) {
+  const dinoObj = dinosaurs.find(dino=> dino.name === dinosaurName);
+  if(!dinoObj){
+    return `Dinosaur with name '${dinosaurName}' cannot be found.`;
+  }
+  const dinoId = dinoObj.dinosaurId;
+
+  const roomObj = rooms.find(room=> room.dinosaurs.includes(dinoId))
+return roomObj ? roomObj.name : `Dinosaur with name '${dinosaurName}' cannot be found in any rooms.`
+  }
+
+
 
 /**
  * getConnectedRoomNamesById()
