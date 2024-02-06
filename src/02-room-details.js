@@ -65,7 +65,18 @@ return roomObj ? roomObj.name : `Dinosaur with name '${dinosaurName}' cannot be 
       "Kit Hopkins Education Wing"
     ]
  */
-function getConnectedRoomNamesById(rooms, id) {}
+function getConnectedRoomNamesById(rooms, id) {
+  
+  let connectedRoom = rooms.filter(room => room.connectsTo.includes(id));
+  let roomName = connectedRoom.map(obj=> obj.name)
+  
+
+    return roomName ? roomName : `Room with ID of '${id}' could not be found.`
+  }
+
+console.log(getConnectedRoomNamesById(exampleRoomData, "A6QaYdyKra"))
+
+
 
 module.exports = {
   getRoomByDinosaurName,

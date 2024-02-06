@@ -76,12 +76,13 @@ function getDinosaurDescription(dinosaurs, id) {
   //init variable to loop through the dinosaur array(filter method)=>create a new arrayif the id param matches dinosaur key.
   // filter is returning an array.
   // brackets zero [0] says to return the only element in the array
-  let dinosaur = dinosaurs.filter(dino => dino.dinosaurId === id) [0]
-  
+  let dinosaur = dinosaurs.find(dino => dino.dinosaurId === id) 
   if(dinosaur == undefined){ 
     return `A dinosaur with an ID of '${id}' cannot be found.`
-}
-  return `${dinosaur.name} (${dinosaur.pronunciation})\n${dinosaur.info} It lived in the ${dinosaur.period} period, over ${Math.min(dinosaur.mya[dinosaur.mya.length-1])} million years ago.`
+  
+  }
+  const {name,pronunciation,info,period,mya} = dinosaur
+  return `${name} (${pronunciation})\n${info} It lived in the ${period} period, over ${mya[mya.length-1]} million years ago.`
   
 }
 console.log(getDinosaurDescription(exampleDinosaurData, "GKl035EYKN"))
